@@ -1,4 +1,4 @@
 #!/bin/bash
 
 git checkout release && git pull origin release
-s3cmd put ./index.html s3://benhagenfacts.com/
+s3cmd --acl-public put ./index.html s3://benhagenfacts.com/
