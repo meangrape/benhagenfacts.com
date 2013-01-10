@@ -4,9 +4,6 @@ set :repository, "git@github.com:jayed/benhagenfacts.com.git"
 set :branch, "release"
 set :ssh_options, { :forward_agent => true }
 
-role :bucket, "benhagenfacts.com"
-server "benhagenfacts.com", :bucket, :primary => true
-
 before "deploy:s3", "deploy:pull_github"
 namespace :deploy do
   task :pull_github do
@@ -14,7 +11,7 @@ namespace :deploy do
   end
 
   desc "Push index.html to AWS S3 bucket"
-  task :s3, :roles => :bucket  do
+  task :s3  do
     run "s3cmd put index.html s3://benhagenfacts.com/"
   end
 end
